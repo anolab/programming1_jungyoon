@@ -8,8 +8,8 @@ namespace SingleLinkedListProject
 {
     class Node
     {
-        public int info;    // This Node가 보유한 information
-        public Node link;   // Next Node를 가리키는 Reference
+        public int info;    // info is inforamtion of this node.
+        public Node link;   // link refers to next node.
 
         public Node(int i)
         {
