@@ -142,5 +142,111 @@ namespace SingleLinkedListProject
             p.link = temp;
 
         }
+
+        // 6 Insert a node after the specified node.
+        public void InsertAfter(int data, int x)
+        {
+            // Empty Check
+            if (start == null)
+            {
+                Console.WriteLine("List is empty");
+                return;
+            }
+
+            Node p; // p is null
+            p = start;
+
+            // if list is not empty
+            while (p != null)
+            {
+                if (p.info == x)
+                    break;
+                p = p.link;
+            }
+
+            if (p == null)
+                Console.WriteLine(x + " is not in the list.");
+            else
+            {
+                Node temp = new Node(data); // temp is a node(info = i, link = null)
+                temp.link = p.link;
+                p.link = temp;
+            }
+        }
+
+        // 7. Insert a node before the specified node.
+        public void InsertBefore(int data, int x)
+        {
+            // Empty Check
+            if (start == null)
+            {
+                Console.WriteLine("List is empty");
+                return;
+            }
+
+            // if there is only one element
+            if (x == start.info)
+            {
+                Node temp = new Node(data);
+                temp.link = start;
+                start = temp;
+                return;
+            }
+
+            Node p;
+            p = start;
+
+            while (p.link != null)
+            {
+                if (p.link.info == x)
+                    break;
+                p = p.link;
+            }
+
+            if(p.link == null)
+            {
+                Console.WriteLine(x + " is not in the list.");
+            }
+            else
+            {
+                Node temp = new Node(data); // temp is a node(info = i, link = null)
+                temp.link = p.link;
+                p.link = temp;
+            }
+        }
+
+        // 8. Insert a node at a specific position.
+        public void InsertAtPosition(int data, int position)
+        {
+            Node temp;
+            int i, last = 1;
+
+            if(position == 1)
+            {
+                temp = new Node(data);
+                temp.link = start;
+                start = temp;
+                return;
+            }
+
+            Node p = start;
+
+            //beuatiful logic
+            for (i = 1; i < position-1 && p != null; i++)
+            {
+                p = p.link;
+            }
+            if (p == null)
+            {
+                Console.WriteLine("You can insert only upto " + i + "th position");
+            }
+            else
+            {
+                temp = new Node(data);
+                temp.link = p.link;
+                p.link = temp;
+            }
+
+        }
     }
 }
