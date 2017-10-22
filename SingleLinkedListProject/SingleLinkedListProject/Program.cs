@@ -21,8 +21,8 @@ namespace SingleLinkedListProject
             while (true)
             {
 
-
-                Console.WriteLine("1. Display list");
+                
+                Console.WriteLine("\n1. Display list");
                 Console.WriteLine("2. Count the number of nodes");
                 Console.WriteLine("3. Search for an element");
                 Console.WriteLine("4. Insert in empty list/Insert in the beggining of the linkedlist.");
@@ -99,6 +99,30 @@ namespace SingleLinkedListProject
                         list.InsertAtPosition(data, position);
                         break;
 
+                    // 9. LinkedList 첫 번째 노드 제거
+                    case 9:
+                        Console.Write("Delete first node");
+                        list.DeleteAtFirst();
+                        break;
+
+                    // 10. LinkedList 마지막 노드 제거
+                    case 10:
+                        Console.Write("Delete last node");
+                        list.DeleteAtEnd();
+                        break;
+
+                    // 11. LinkedList 특정 노드 제거
+                    case 11:
+                        Console.Write("Enter the element to be deleted: ");
+                        data = Convert.ToInt32(Console.ReadLine());
+                        list.DeleteNode(data);
+                        break;
+
+                    // 12. LinkedList 순서 변경
+                    case 12:
+                        Console.Write("Reverse the LinkedList.");
+                        list.Reverse();
+                        break;
 
                     default:
                         Console.WriteLine("Wrong Choice");

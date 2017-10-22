@@ -248,5 +248,108 @@ namespace SingleLinkedListProject
             }
 
         }
+
+        // 9. Delete the first/only node.
+        public void DeleteAtFirst()
+        {
+            // empty LinkedList
+            if (start == null)
+            {
+                Console.Write("List is empty");
+                return;
+            }
+
+            // If there is only one member in the list
+            if (start.link == null)
+            {
+                start = null;
+                return;
+            }
+
+            // If there are more than one member in the list
+            else
+            {
+                start = start.link;
+                return;
+            }
+        }
+
+        // 10. Delete the last node.
+        public void DeleteAtEnd()
+        {
+            // empty LinkedList
+            if (start == null)
+            {
+                Console.Write("List is empty");
+                return;
+            }
+
+            // If there are more than one member in the list.
+            else
+            {
+                Node p = start;
+
+                while(p.link.link != null)
+                {
+                    p = p.link;
+                }
+
+                p.link = null;
+            }
+        }
+        
+        // 11. Delete a node at a specific value.
+        public void DeleteNode(int data)
+        {
+            if (start == null)
+            {
+                Console.Write("List is empty.");
+                return;
+            }
+            if (start.info == data)
+            {
+                DeleteAtFirst();
+            }
+
+            else
+            {
+                Node p = start;
+                
+                while(p.link != null)
+                {
+                    if (p.link.info == data)
+                        break;
+
+                    p = p.link;
+                }
+
+                if(p.link == null)
+                {
+                    Console.Write("There is no " + data + " in the list.");
+                }
+                else
+                {
+                    p.link = p.link.link;
+                }
+                
+            }
+        }
+
+        // 12. Reverse the LinkedList
+        public void Reverse()
+        {
+            Node prev, p, next;
+
+            prev = null;
+            p = start;
+            while(p != null)
+            {
+                next = p.link;
+                p.link = prev;
+                prev = p;
+                p = next;
+            }
+            start = prev;
+        }
     }
 }
