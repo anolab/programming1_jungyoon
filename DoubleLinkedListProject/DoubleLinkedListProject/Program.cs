@@ -19,18 +19,16 @@ namespace DoubleLinkedListProject
             {
 
                 Console.WriteLine("\n1. Display list");
-                Console.WriteLine("2. Count the number of nodes");
-                Console.WriteLine("3. Search for an element");
-                Console.WriteLine("4. Insert in empty list/Insert in the beggining of the linkedlist.");
-                Console.WriteLine("5. Insert a noode at the end of the list");
-                Console.WriteLine("6. Insert a node after a specified node");
-
-                Console.WriteLine("7. Insert a node before a specified node");
-                Console.WriteLine("8. Insert a node at a given position");
-                Console.WriteLine("9. Delete first node");
-                Console.WriteLine("10. Delete last node");
-                Console.WriteLine("11. Delete any node");
-                Console.WriteLine("12. Reverse the list");
+                Console.WriteLine("2. Insert in empty list");
+                Console.WriteLine("3. Insert in the beggining of the linkedlist.");
+                Console.WriteLine("4. Insert a node at the end of the list");
+                Console.WriteLine("5. Insert a node after a specified node");
+                Console.WriteLine("6. Insert a node before a specified node");
+                Console.WriteLine("7. Delete first node");
+                Console.WriteLine("8. Delete last node");
+                Console.WriteLine("9. Delete any node");
+                Console.WriteLine("10. Reverse the list");
+                Console.WriteLine("11. Exit");
 
                 choice = Convert.ToInt32(Console.ReadLine());
 
@@ -86,17 +84,21 @@ namespace DoubleLinkedListProject
                         break;
 
                     case 9:
-                        Console.Write("Enter the element to be inserted: ");
+                        Console.Write("Enter the element to be deleted: ");
                         data = Convert.ToInt32(Console.ReadLine());
                         list.DeleteNode(data);
                         break;
 
                     case 10:
-                        list.ReverseList();
+                       list.ReverseList();
                         break;
 
+                    case 11:
+                        Console.Write("Exit");
+                        break;
+                        
                     default:
-                        Console.WriteLine("Wrong Chocie");
+                        Console.WriteLine("Wrong Choice");
                         break;
                 }
             }
