@@ -8,84 +8,144 @@ namespace CircularQueueProject
 {
     class CircularQueue
     {
-        private int[] queueArray;
-        private int front;
-        private int rear;
+        int[] cqueue;
+        int front;
+        int end;
 
         public CircularQueue()
         {
-            queueArray = new int[10];
+            cqueue = new int[5];
             front = -1;
-            rear = -1;
+            end = -1;
         }
 
-        public bool IsEmpty()
+        public CircularQueue(int num)
         {
-            return (front == -1);
+            cqueue = new int[10];
+            front = -1;
+            end = -1;
         }
 
-        public bool isFull()
+        /* 1. 원소 입력 */
+        public void Enqueue(int num)
         {
-            return ((front == 0 && rear == queueArray.Length - 1)) || ((front == rear + 1));
-        }
-
-        public void Insert(int x)
-        {
-            if(isFull())
+            /* 처음에 들어 옴 */
+            if (CheckEmpty())
             {
-                Console.WriteLine("Queue Overflow\n");
-                return;
-            }
-            if (front == -1)
+                cqueue[0] = num;
                 front = 0;
-            if (rear == queueArray.Length - 1)
-                rear = 0;
+                end = 0;
+            }
+
+            /* 처음 이후 들어 옴 */
             else
-                rear = rear + 1;
-            queueArray[rear] = x;
-        }
-
-        public int Delete()
-        {
-            if (IsEmpty())
-                throw new System.InvalidOperationException("Queue Underflow");
-
-            int x = queueArray[front];
-
-            if (front == rear)
             {
-                front = -1;
-                rear = -1;
+                if (CheckFull())
+                    Console.WriteLine("Full");
+                else
+                {
+                    if (end == cqueue.Length -1)
+                    {
+                        end = 0;
+                        cqueue[end] = num;
+                    }
+                    else
+                    {
+                        end = end + 1;
+                        cqueue[end] = num;
+                    }
+                }
             }
-            else if (front == queueArray.Length - 1)
-                front = 0;
-            else
-                front = front + 1;
-            return x;
+
         }
 
+        // Empty Check
+        public bool CheckFull()
+        {
+            if(front == 0 && end == cqueue.Length-1)
+            {
+                return true;
+            }
+            if(front == end + 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        // Full Check
+        public bool CheckEmpty()
+        {
+            if(front == -1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /* 2. 원소 삭제 */
+        public void Dequeue()
+        {
+            if (CheckEmpty())
+                Console.WriteLine("Emtpy");
+            
+            else
+            {
+                if (front == end)
+                {
+                    int value = cqueue[front];
+                    Console.WriteLine(value);
+                    front = -1;
+                    end = -1;
+                }
+                else
+                {
+
+                    if (front == cqueue.Length - 1)
+                    {
+                        int value = cqueue[front];
+                        front = 0;
+                        Console.WriteLine(value);
+                    }
+                    else
+                    {
+                        int value = cqueue[front];
+                        front = front + 1;
+                        Console.WriteLine(value);
+                    }
+                }
+            }
+        }
+
+        /* 3. Display */
         public void Display()
         {
-            if(IsEmpty())
-            {
-                Console.WriteLine("Queue is empty");
+            if (CheckEmpty())
                 return;
-            }
-            Console.WriteLine("Queue is : ");
 
-            int i = front;
-            if (front <= rear)
+            if (front <= end)
             {
-                while (i <= rear)
-                    Console.Write(queueArray[i++] + " ");
+                for (int i = front; i <= end; i++)
+                {
+                    Console.Write(cqueue[i]);
+                }
             }
             else
             {
-                while (i <= queueArray.Length - 1)
-                    Console.WriteLine(queueArray[i++] + " ");
-                i = 0;
-                while (i <= rear)
-                    Console.WriteLine(queueArray[i++] + " ");
+                for (int i = front; i <= cqueue.Length - 1; i++)
+                {
+                    Console.Write(cqueue[i]);
+                }
+                for (int i = 0; i <= end; i++)
+                {
+                    Console.Write(cqueue[i]);
+                }
             }
         }
     }
